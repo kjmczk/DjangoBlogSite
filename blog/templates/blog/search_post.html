@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{% if query %}{{ query }}{% endif %} | {{ block.super }}{% endblock %}
+{% block description %}検索ワード「{% if query %}{{ query }}{% endif %}」での検索結果ページです。{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <main class="col-md-8">
+      <h1 class="mb-4">「{% if query %}{{ query }}{% endif %}」の検索結果</h1>
+      <p class="text-right">{{ page_obj.start_index }}-{{ page_obj.end_index }}件（{{ paginator.count }}件）</p>
+      {% include "blog/snippets/main_post_list.html" %}
+      {% include "blog/snippets/pagination.html" %}
+      {# {% include "blog/snippets/pagination_b.html" %} #}
+    </main>
+    <aside class="col-md-4">
+      {% include "blog/snippets/sidebar.html" %}
+    </aside>
+  </div>
+</div>
+{% endblock %}

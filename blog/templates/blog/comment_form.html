@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}コメント投稿フォーム | {{ block.super }}{% endblock %}
+{% block description %}コメント投稿フォームのページです。{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <main class="col-md-8">
+      <h1 class="mb-4">コメント投稿フォーム</h1>
+      <p>To:「{{ post.title }}」</p>
+      <form method="POST">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">送信</button>
+      </form>
+    </main>
+    <aside class="col-md-4">
+      {% include "blog/snippets/sidebar.html" %}
+    </aside>
+  </div>
+</div>
+{% endblock %}

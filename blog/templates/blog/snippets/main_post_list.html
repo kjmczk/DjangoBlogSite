@@ -1,0 +1,25 @@
+{% for post in object_list %}
+{% if user.is_authenticated or post.is_public %}
+
+<div class="card mb-3">
+  {% if post.image %}
+  <a href="{% url 'blog:post_detail' post.id %}">
+    <img class="card-img-top" src="{{ post.image.url }}" alt="{{ post.title }}">
+  </a>
+  {% endif %}
+  <div class="card-body">
+    {% if not post.is_public %}
+    <h5><span class="badge badge-secondary">下書き</span></h5>
+    {% endif %}
+    <a href="{% url 'blog:post_detail' post.id %}">
+      <h5 class="card-title">{{ post.title }}</h5>
+    </a>
+    <p class="card-text">{{ post.published_at|date }}</p>
+    <a href="{% url 'blog:post_detail' post.id %}" class="btn btn-primary">記事を読む</a>
+  </div>
+</div>
+
+{% endif %}
+{% empty %}
+<p>まだ投稿はありません。</p>
+{% endfor %}

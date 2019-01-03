@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}{{ object.title }} | {{ block.super }}{% endblock %}
+{% block description %}{{ object.description }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <main class="col-md-8">
+      <article class="blog-area">
+        <h1>{{ object.title }}</h1>
+        <p>{{ object.published_at|date }}</p>
+        <p>{{ object.category.name }}</p>
+        {% for tag in object.tags.all %}
+        {{ tag.name }}
+        {% endfor %}
+        <hr>
+        {{ object.content|safe }}
+      </article>
+      <article class="comment-area">
+        <a class="btn btn-primary my-3" href="{% url 'blog:comment_form' post.pk %}">コメントを投稿する</a>
+        {% include "blog/snippets/comments.html" %}
+      </article>
+    </main>
+    <aside class="col-md-4">
+      {% include "blog/snippets/sidebar.html" %}
+    </aside>
+  </div>
+</div>
+{% endblock %}

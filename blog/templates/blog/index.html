@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}投稿一覧 | {{ block.super }}{% endblock %}
+{% block description %}マイブログです。毎日更新します。{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <main class="col-md-8">
+      <h1 class="mb-4">投稿一覧</h1>
+      {% include "blog/snippets/main_post_list.html" %}
+      {% include "blog/snippets/pagination.html" %}
+      {# {% include "blog/snippets/pagination_b.html" %} #}
+    </main>
+    <aside class="col-md-4">
+      {% include "blog/snippets/sidebar.html" %}
+    </aside>
+  </div>
+</div>
+{% endblock %}
